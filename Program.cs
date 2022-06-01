@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -11,8 +11,9 @@ namespace OC_LAB06
 {
     class Program
     {
-        static string kb1 = "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS";
-        static string path = @"D:\Documents";
+
+        static string kb1 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        static string path  = @"D:\Documents";
         static void Main(string[] args)
         {
         mark:
@@ -40,6 +41,7 @@ namespace OC_LAB06
             using (FileStream fstream = new FileStream($"{path}\\note1.txt", FileMode.OpenOrCreate)) { }
             using (FileStream fstream = new FileStream($"{path}\\note2.txt", FileMode.OpenOrCreate)) { }
             using (FileStream fstream = new FileStream($"{path}\\buff.txt", FileMode.OpenOrCreate)) { }
+
         }
         static void Second()
         {
@@ -52,20 +54,20 @@ namespace OC_LAB06
             Console.WriteLine("Введите колл-во кб для записи:");
             int n = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine(n);
-            string data ="s" ;
+            string data = "s";
             for (int i = 0; i < n; i++)
             {
                 data = data + kb1;
             }
-            
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(path, "buff.txt"), true))
+
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine($"{path}\\buff.txt"), true))
             {
-                
+
 
                 outputFile.WriteLine(data);
-                
+
             }
-            
+
             FileInfo fileInfo1 = new FileInfo($"{path}\\buff.txt");
             FileInfo fileInfo2 = new FileInfo($"{path}\\note1.txt");
             FileInfo fileInfo3 = new FileInfo($"{path}\\note2.txt");
@@ -76,7 +78,7 @@ namespace OC_LAB06
             {
                 if ((len1 + len2) >= 32768)
                 {
-                    using (StreamWriter outputFile = new StreamWriter(Path.Combine(path, "note2.txt"), true))
+                    using (StreamWriter outputFile = new StreamWriter(Path.Combine(fileInfo3.FullName), true))
                     {
                         outputFile.WriteLine(data);
                         Console.WriteLine("Текст записан в файл note2.txt");
@@ -86,7 +88,7 @@ namespace OC_LAB06
                 }
                 else
                 {
-                    using (StreamWriter outputFile = new StreamWriter(Path.Combine(path, "note1.txt"), true))
+                    using (StreamWriter outputFile = new StreamWriter(Path.Combine(fileInfo2.FullName), true))
                     {
                         outputFile.WriteLine(data);
                         Console.WriteLine("Текст записан в файл note1.txt");
@@ -106,6 +108,8 @@ namespace OC_LAB06
         }
         static void Third()
         {
+
+
             FileInfo fileInfo1 = new FileInfo($"{path}\\note1.txt");
             FileInfo fileInfo2 = new FileInfo($"{path}\\note2.txt");
             FileInfo fileInfo3 = new FileInfo($"{path}\\buff.txt");
